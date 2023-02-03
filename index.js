@@ -1,8 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require('dotenv'). config()
 
 const app = express();
+const PORT = process.env.PORT
+const DB= process.env.DB_URI
+
 
 app.use(express.json());
 app.use(express.urlencoded());
@@ -11,7 +15,7 @@ app.use(cors());
 //MongoDB connect
 
 mongoose.connect(
-  "mongodb://127.0.0.1:27017/studentRegister",
+  `${DB}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -122,6 +126,6 @@ app.post("/addStudent", (req, res) => {
   });
 });
 
-app.listen(9002, () => {
-  console.log("The app has started on port 9002");
+app.listen(`${PORT}`, () => {
+  console.log(`The app has started on port ${PORT}` );
 });
