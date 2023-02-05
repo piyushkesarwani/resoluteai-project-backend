@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
 const User = new mongoose.model("User", userSchema);
 
 app.get("/", (req, res) => {
-  res.send("Hi Piyush");
+  res.send("Hi Piyush. How are you");
 });
 
 //Backend Routers
