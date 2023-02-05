@@ -4,8 +4,8 @@ const cors = require("cors");
 require('dotenv'). config()
 
 const app = express();
-const PORT = process.env.PORT
-const DB= process.env.DB_URI
+const PORT = process.env.PORT || 9002
+const DB_URI= process.env.DB_URI
 
 
 app.use(express.json());
@@ -15,7 +15,7 @@ app.use(cors());
 //MongoDB connect
 
 mongoose.connect(
-  `${DB}`,
+  `${DB_URI}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
 const User = new mongoose.model("User", userSchema);
 
 app.get("/", (req, res) => {
-  res.send("Hi");
+  res.send("Hi Piyush");
 });
 
 //Backend Routers
@@ -126,6 +126,6 @@ app.post("/addStudent", (req, res) => {
   });
 });
 
-app.listen(`${PORT}`, () => {
+app.listen(PORT, () => {
   console.log(`The app has started on port ${PORT}` );
 });
